@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Body from "./Components/Body";
+import Button from "./Components/Button";
+import ButtonList from "./Components/ButtonList";
+import VideoCard from "./Components/VideoCard";
+import VideoContainer from "./Components/VideoContainer";
+import useFetchVideos from "./customHook/fetchYoutubeVideos";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [loading, error, videos] = useFetchVideos();
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+    if (error) {
+        return <p>{error.message}</p>;
+    }
+    return (
+        <>
+            <Body>
+                <ButtonList>
+                    {[
+                        "Cricket",
+                        "Football",
+                        "React",
+                        "Svelte",
+                        "Tailwind",
+                        "Redux",
+                        "Github",
+                    ].map((item, i) => (
+                        <Button key={i} text={item} />
+                    ))}
+                </ButtonList>
+                <VideoContainer>
+                    {videos.map((video, i) => (
+                        <VideoCard key={i} video={video} />
+                    ))}
+                </VideoContainer>
+            </Body>
+        </>
+    );
 }
 
 export default App;
