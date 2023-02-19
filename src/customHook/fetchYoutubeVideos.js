@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import {  YOUTUBE_VIDEO_LIST_API } from "../config";
 
-const useFetchVideos = () => {
-    const [videos, setVideos] = useState(null);
+const useFetchVideos = (url) => {
+    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -12,9 +11,9 @@ const useFetchVideos = () => {
     async function fetchVideos() {
         try {
             setLoading(true);
-            const response = await fetch(YOUTUBE_VIDEO_LIST_API);
-            const data = await response.json();
-            setVideos(data.items);
+            const response = await fetch(url);
+            const info = await response.json();
+            setData(info);
             setError(null);
             setLoading(false);
         } catch (error) {
@@ -22,6 +21,6 @@ const useFetchVideos = () => {
             setLoading(false);
         }
     }
-    return [loading, error, videos];
+    return [loading, error, data];
 };
 export default useFetchVideos;

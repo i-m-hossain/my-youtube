@@ -11,10 +11,16 @@ export const sidebarSlice = createSlice({
         toggleActive: (state) => {
             state.isMenuActive = !state.isMenuActive;
         },
+        closeMenu:(state)=>{
+            state.isMenuActive = false
+        }, 
+        showMenu:(state)=>{
+            state.isMenuActive= true
+        }
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleActive } = sidebarSlice.actions;
+export const { toggleActive, closeMenu,showMenu } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

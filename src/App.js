@@ -1,12 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Body from "./Components/Body";
 import Button from "./Components/Button";
 import ButtonList from "./Components/ButtonList";
 import VideoCard from "./Components/VideoCard";
 import VideoContainer from "./Components/VideoContainer";
+import { YOUTUBE_VIDEO_LIST_API } from "./config";
 import useFetchVideos from "./customHook/fetchYoutubeVideos";
+import { showMenu } from "./store/slices/sidebarSlice";
 
 function App() {
-    const [loading, error, videos] = useFetchVideos();
+    const dispatch = useDispatch();
+    const [loading, error, data] = useFetchVideos(YOUTUBE_VIDEO_LIST_API);
+    useEffect(() => {
+        dispatch(showMenu());
+    }, []);
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -30,7 +38,7 @@ function App() {
                     ))}
                 </ButtonList>
                 <VideoContainer>
-                    {videos.map((video, i) => (
+                    {data?.items.map((video, i) => (
                         <VideoCard key={i} video={video} />
                     ))}
                 </VideoContainer>
