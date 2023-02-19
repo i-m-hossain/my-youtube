@@ -14,6 +14,7 @@ function App() {
     const [loading, error, data] = useFetchVideos(YOUTUBE_VIDEO_LIST_API);
     useEffect(() => {
         dispatch(showMenu());
+        //eslint-disable-next-line
     }, []);
     if (loading) {
         return <p>Loading...</p>;

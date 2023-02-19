@@ -6,7 +6,7 @@ const useFetchVideos = (url) => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchVideos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    //eslint-disable-next-line 
     }, []);
 
     async function fetchVideos() {
