@@ -14,9 +14,9 @@ function SingleVideo() {
     
     useEffect(() => {
         dispatch(closeMenu());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-   
     return (
         <div className="mx-12 my-4 grid grid-cols-12 gap-x-4">
             <div className="col-span-12 md:col-span-9 ">
