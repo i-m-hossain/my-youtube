@@ -13,3 +13,6 @@ export const GET_YOUTUBE_COMMENT_THREAD_API = (videoId) =>
 export const GET_YOUTUBE_COMMENT_REPLIES = (parentCommentId) =>
     `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=${parentCommentId}&key=` +
     YOUTUBE_API_KEY;
+export const YOUTUBE_CATEGORIES =
+    "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=bd&key=" +
+    YOUTUBE_API_KEY;

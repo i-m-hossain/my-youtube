@@ -6,6 +6,7 @@ function VideoCard({ video }) {
     const { snippet, statistics } = video;
     const { thumbnails,channelTitle } = snippet;
     const navigate= useNavigate()
+    console.log(video)
     
     return (
         <div className="shadow-lg p-4 rounded mx-auto cursor-pointer hover:bg-gray-100 transition-all hover:scale-[1.1] duration-250" onClick={()=>navigate("/watch?v="+video.id)}>
