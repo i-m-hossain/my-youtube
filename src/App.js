@@ -6,12 +6,12 @@ import ButtonList from "./Components/ButtonList";
 import VideoCard from "./Components/VideoCard";
 import VideoContainer from "./Components/VideoContainer";
 import { YOUTUBE_VIDEO_LIST_API } from "./config";
-import useFetchVideos from "./customHook/fetchYoutubeVideos";
+import useFetchData from "./customHook/fetchYoutubeVideos";
 import { showMenu } from "./store/slices/sidebarSlice";
 
 function App() {
     const dispatch = useDispatch();
-    const [loading, error, data] = useFetchVideos(YOUTUBE_VIDEO_LIST_API);
+    const [loading, error, data] = useFetchData(YOUTUBE_VIDEO_LIST_API);
     useEffect(() => {
         dispatch(showMenu());
         //eslint-disable-next-line

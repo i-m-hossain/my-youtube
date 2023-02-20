@@ -1,10 +1,10 @@
 import React from "react";
 import { GET_YOUTUBE_VIDEO_DESCRIPTION_API } from "../config";
-import useFetchVideos from "../customHook/fetchYoutubeVideos";
+import useFetchData from "../customHook/fetchYoutubeVideos";
 import Description from "./Description";
 
 const VideoDescription = ({ videoId }) => {
-    const [loading, error, data] = useFetchVideos(
+    const [loading, error, data] = useFetchData(
         GET_YOUTUBE_VIDEO_DESCRIPTION_API(videoId)
     );
     if (loading) {
@@ -14,7 +14,7 @@ const VideoDescription = ({ videoId }) => {
         return <p> {error.message}</p>;
     }
     const { snippet, statistics } = data.items[0];
-    console.log(snippet)
+   
     return (
         <div className="w-full mt-4">
             <Description snippet={snippet} statistics={statistics} >

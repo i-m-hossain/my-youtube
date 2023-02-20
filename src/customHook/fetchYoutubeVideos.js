@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useFetchVideos = (url) => {
+const useFetchData = (url) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetchVideos();
     //eslint-disable-next-line 
-    }, []);
+    }, [url]);
 
     async function fetchVideos() {
         try {
@@ -24,4 +24,4 @@ const useFetchVideos = (url) => {
     }
     return [loading, error, data];
 };
-export default useFetchVideos;
+export default useFetchData;

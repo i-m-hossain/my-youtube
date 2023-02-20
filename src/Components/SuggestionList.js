@@ -1,9 +1,9 @@
 import React from "react";
 import { YOUTUBE_VIDEO_LIST_API } from "../config";
-import useFetchVideos from "../customHook/fetchYoutubeVideos";
+import useFetchData from "../customHook/fetchYoutubeVideos";
 import SuggestionsVideo from "./SuggestionsVideo";
 function SuggestionList() {
-    const [loading, error, data] = useFetchVideos(YOUTUBE_VIDEO_LIST_API);
+    const [loading, error, data] = useFetchData(YOUTUBE_VIDEO_LIST_API);
     if (loading) {
         return <p>loading..</p>;
     }

@@ -1,10 +1,10 @@
 import React from "react";
 import { GET_YOUTUBE_COMMENT_THREAD_API } from "../config";
-import useFetchVideos from "../customHook/fetchYoutubeVideos";
+import useFetchData from "../customHook/fetchYoutubeVideos";
 import Comment from "./Comment";
 
 function Comments({ videoId }) {
-    const [loading, error, data] = useFetchVideos(
+    const [loading, error, data] = useFetchData(
         GET_YOUTUBE_COMMENT_THREAD_API(videoId)
     );
     if (loading) {
