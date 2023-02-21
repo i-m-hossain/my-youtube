@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { YOUTUBE_URL } from "../config";
-import Shimmer from "./Shimmer";
+
 
 function VideoPlayer({ videoId }) {
     return (

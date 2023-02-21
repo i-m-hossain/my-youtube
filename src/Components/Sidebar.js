@@ -8,7 +8,7 @@ function Sidebar() {
       return;
     };
     return (
-        <div className="w-[230px] pb-[600px] shadow-lg hidden md:block pl-6">
+        <div className="w-[230px] pb-[600px] shadow-lg hidden md:block pl-6 fixed">
             <ul className="py-2">
                 <li>Home</li>
                 <li>Shorts</li>

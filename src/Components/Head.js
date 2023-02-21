@@ -1,17 +1,18 @@
 import React from "react";
-import { BsYoutube, BsSearch } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { BsYoutube } from "react-icons/bs";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { toggleActive } from "../store/slices/sidebarSlice";
 import { Link } from "react-router-dom";
+import SearchVideos from "./SearchVideos";
 function Head() {
     const dispatch = useDispatch();
     return (
-        <div className="grid grid-cols-12 p-4 shadow-lg items-center">
+        <div className="grid grid-cols-12 p-4 shadow-lg items-center fixed bg-white w-full z-20">
             <div className="col-span-1 flex space-x-4 justify-center items-center">
-                <GiHamburgerMenu
-                    size={30}
+                <RxHamburgerMenu
+                    size={25}
                     onClick={() => dispatch(toggleActive())}
                     className="cursor-pointer"
                 />
@@ -22,16 +23,9 @@ function Head() {
                     </div>
                 </Link>
             </div>
-            <div className="col-span-10 flex justify-center ">
-                <input
-                    type="text"
-                    className="border w-1/2 rounded-l-full p-2  border-gray-400 outline-none"
-                />
 
-                <div className="border rounded-r-full border-gray-400 px-4 pt-3 bg-gray-100 hover:bg-gray-200 ">
-                    <BsSearch />
-                </div>
-            </div>
+            <SearchVideos />
+
             <div className="col-span-1 flex justify-center">
                 <AiOutlineUser size={30} />
             </div>

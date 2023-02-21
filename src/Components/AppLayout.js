@@ -7,9 +7,9 @@ function AppLayout() {
     return (
         <>
             <Head />
-            <div className="flex ">
+            <div className="flex pt-20 relative">
                 <Sidebar />
-                <div className="flex-1">
+                <div className="flex-1 md:absolute md:left-56">
                     <Outlet />
                 </div>
             </div>

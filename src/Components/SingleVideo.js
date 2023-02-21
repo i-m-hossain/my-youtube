@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { closeMenu } from "../store/slices/sidebarSlice";
+import { closeMenu, showMenu } from "../store/slices/sidebarSlice";
 import Comments from "./Comments";
 import SuggestionList from "./SuggestionList";
 import VideoDescription from "./VideoDescription";
@@ -14,6 +14,7 @@ function SingleVideo() {
     
     useEffect(() => {
         dispatch(closeMenu());
+        return ()=>{dispatch(showMenu());}
     // eslint-disable-next-line 
     }, []);
 

@@ -4,12 +4,14 @@ import Description from "./Description";
 
 function VideoCard({ video }) {
     const { snippet, statistics } = video;
-    const { thumbnails,channelTitle } = snippet;
-    const navigate= useNavigate()
-    console.log(video)
-    
+    const { thumbnails, channelTitle } = snippet;
+    const navigate = useNavigate();
+
     return (
-        <div className="shadow-lg p-4 rounded mx-auto cursor-pointer hover:bg-gray-100 transition-all hover:scale-[1.1] duration-250" onClick={()=>navigate("/watch?v="+video.id)}>
+        <div
+            className="shadow-lg p-4 rounded mx-auto cursor-pointer hover:bg-gray-100 transition-all hover:scale-105 duration-250"
+            onClick={() => navigate("/watch?v=" + video.id)}
+        >
             <div>
                 <img
                     src={thumbnails?.maxres?.url}
@@ -18,7 +20,6 @@ function VideoCard({ video }) {
                 />
             </div>
             <Description statistics={statistics} snippet={snippet} />
-            
         </div>
     );
 }

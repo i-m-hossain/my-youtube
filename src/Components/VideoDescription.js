@@ -14,7 +14,7 @@ const VideoDescription = ({ videoId }) => {
         return <p> {error.message}</p>;
     }
     const { snippet, statistics } = data.items[0];
-   
+   console.log(data.items)
     return (
         <div className="w-full mt-4">
             <Description snippet={snippet} statistics={statistics} >
