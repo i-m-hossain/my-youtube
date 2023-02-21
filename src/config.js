@@ -19,4 +19,4 @@ export const YOUTUBE_CATEGORIES =
 export const YOUTUBE_SEARCH_API = (searchQuery) =>
     `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchQuery}&key=` +
     YOUTUBE_API_KEY;
-export const YOUTUBE_SEARCH_SUGGESTION_API= (searchTerm)=>"http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+searchTerm
+export const YOUTUBE_SEARCH_SUGGESTION_API= (searchTerm)=>"https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q="+searchTerm

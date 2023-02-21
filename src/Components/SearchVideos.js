@@ -48,8 +48,8 @@ function SearchVideos() {
             </div>
 
             {/* loading shimmer */}
-            {loading && (
-                <div className="flex space-x-4 absolute top-11 mr-11 z-10 border rounded  w-1/2 bg-white shadow-lg animation-pulse h-16 px-4 py-5">
+            { loading &&(
+                <div className="flex space-x-4 absolute top-11 mr-11 z-10 border rounded  w-1/2 bg-white shadow-lg animate-pulse h-16 px-4 py-5">
                     <div className="bg-slate-200 border rounded-full h-5 w-5 "></div>
                     <div className="bg-slate-200 border rounded full h-5 w-40"></div>
                 </div>
