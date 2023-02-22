@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { YOUTUBE_SEARCH_SUGGESTION_API } from "../config";
+import { cacheResults } from "../store/slices/searchSlice";
 import SearchSuggestionItem from "./SearchSuggestionItem";
 
 function SearchVideos() {
@@ -8,13 +10,25 @@ function SearchVideos() {
     const [result, setResult] = useState(null);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const cachedResult = useSelector((state) => state.search.searchResult);
+
     useEffect(() => {
+        /*
+         * Debounce function will execute after 200ms(after user stop typing)
+         * Clearing timeout will cancel the intermediate setTimeout
+         * For further optimization, the search results are cached in the store
+         * Before calling the API, the query is checked if it is present in the store
+         */
         let debounceFunction;
         if (query) {
-            debounceFunction = setTimeout(
-                () => getSearchSuggestions(query),
-                200
-            );
+            debounceFunction = setTimeout(() => {
+                if (cachedResult[query]) {
+                    setResult(cachedResult[query]);
+                } else {
+                    getSearchSuggestions(query);
+                }
+            }, 200);
         }
 
         return () => clearTimeout(debounceFunction);
@@ -25,9 +39,11 @@ function SearchVideos() {
             setLoading(true);
             const response = await fetch(YOUTUBE_SEARCH_SUGGESTION_API(query));
             const data = await response.json();
-
             setResult(data[1]);
             setLoading(false);
+            
+            // the search results will be added to cache
+            dispatch(cacheResults({ [query]: data[1] }));
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +64,7 @@ function SearchVideos() {
             </div>
 
             {/* loading shimmer */}
-            { loading &&(
+            {loading && (
                 <div className="flex space-x-4 absolute top-11 mr-11 z-10 border rounded  w-1/2 bg-white shadow-lg animate-pulse h-16 px-4 py-5">
                     <div className="bg-slate-200 border rounded-full h-5 w-5 "></div>
                     <div className="bg-slate-200 border rounded full h-5 w-40"></div>
