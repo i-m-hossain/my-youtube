@@ -41,7 +41,7 @@ function SearchVideos() {
             const data = await response.json();
             setResult(data[1]);
             setLoading(false);
-            
+
             // the search results will be added to cache
             dispatch(cacheResults({ [query]: data[1] }));
         } catch (error) {
@@ -56,7 +56,9 @@ function SearchVideos() {
                 onFocus={() => setShowSuggestions(true)}
                 className="border w-1/2 rounded-l-full p-2 pl-4  border-gray-400 outline-none "
                 onChange={(e) => setQuery(e.target.value)}
-                onBlur={() => setShowSuggestions(false)}
+                onBlur={() => {
+                    setShowSuggestions(false);
+                }}
             />
 
             <div className="border rounded-r-full border-gray-400 px-4 pt-3 bg-gray-100 hover:bg-gray-200 ">
@@ -75,7 +77,7 @@ function SearchVideos() {
             {result && showSuggestions && (
                 <div className="absolute top-11 mr-11 z-10 border rounded  w-1/2 bg-white shadow-lg">
                     {result &&
-                        result.map((item, i) => (
+                        result.map((item) => (
                             <SearchSuggestionItem key={item} item={item} />
                         ))}
                 </div>
