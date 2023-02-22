@@ -34,7 +34,7 @@ function SearchVideos() {
     };
 
     return (
-        <div className="col-span-10 flex justify-center relative">
+        <>
             <input
                 type="text"
                 onFocus={() => setShowSuggestions(true)}
@@ -64,7 +64,7 @@ function SearchVideos() {
                         ))}
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
