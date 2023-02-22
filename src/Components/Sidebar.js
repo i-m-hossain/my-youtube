@@ -1,14 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 function Sidebar() {
-    const isMenuActive = useSelector((state) => state.sidebar.isMenuActive);
-    if (!isMenuActive) {
-      console.log({isMenuActive})
-      return;
-    };
     return (
-        <div className="w-[230px] pb-[600px] shadow-lg hidden md:block pl-6 fixed">
+        <>
             <ul className="py-2">
                 <li>Home</li>
                 <li>Shorts</li>
@@ -27,7 +21,7 @@ function Sidebar() {
                 <li>Akshay saini</li>
                 <li>Github</li>
             </ul>
-        </div>
+        </>
     );
 }
 

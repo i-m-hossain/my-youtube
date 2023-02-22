@@ -10,8 +10,8 @@ function Head() {
     const dispatch = useDispatch();
     return (
         <div className="grid grid-cols-12 p-4 shadow-lg items-center fixed bg-white w-full z-20">
-            <div className="col-span-3 md:col-span-2 flex space-x-4 justify-center items-center">
-                <div>
+            <div className="col-span-3 md:col-span-2 flex md:space-x-4  items-center">
+                <div className="hidden md:block">
                     <RxHamburgerMenu
                         size={25}
                         onClick={() => dispatch(toggleActive())}
