@@ -5,6 +5,7 @@ import VideoCard from "./Components/VideoCard";
 import VideoContainer from "./Components/VideoContainer";
 import { YOUTUBE_CATEGORIES, YOUTUBE_VIDEO_LIST_API } from "./config";
 import useFetchData from "./customHook/fetchYoutubeVideos";
+import LiveVideoCard from "./HOC/LiveVideoCard";
 
 function App() {
     const [loading, error, data] = useFetchData(YOUTUBE_VIDEO_LIST_API);
@@ -33,7 +34,9 @@ function App() {
                     data={catData}
                 />
                 <VideoContainer>
-                    {data?.items.map((video, i) => (
+                    <LiveVideoCard video={data.items[0]} />
+
+                    {data?.items.slice(1).map((video, i) => (
                         <VideoCard key={i} video={video} />
                     ))}
                 </VideoContainer>

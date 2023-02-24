@@ -23,3 +23,5 @@ export const YOUTUBE_SEARCH_API = (searchQuery) =>
 export const YOUTUBE_SEARCH_SUGGESTION_API = (searchTerm) =>
     "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
     searchTerm;
+export const OFFSET_LIVE_CHAT=25
+export const OFFSET_SEARCH_RESULT=50

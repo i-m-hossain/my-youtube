@@ -18,13 +18,14 @@ function SearchResultVideos() {
     if (error) {
         return <p>{error.message}</p>;
     }
+    console.log(data)
     return (
         <div className="mt-4">
-            {data.items.map((video, i) => (
+            {data.items.filter(item=> item.id.videoId).map((video, i) => (
                 <div
-                    className="mx-12 shadow-lg w-full rounded grid grid-cols-12 space-y-2 justify-center p-4 mb-4 cursor-pointer hover:bg-gray-100 transition-all duration-250 "
+                    className="mx-12 shadow-lg w-full rounded grid grid-cols-12 space-y-2 justify-center items-center p-4 mb-4 cursor-pointer hover:bg-gray-100 transition-all duration-250 "
                     onClick={() => navigate("/watch?v=" + video.id.videoId)}
-                    key={video?.id?.videoId+i}
+                    key={video?.id?.videoId+video.snippet.title}
                 >
                     <SuggestionsVideo video={video} />
                 </div>
