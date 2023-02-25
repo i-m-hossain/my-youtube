@@ -1,8 +1,8 @@
 import React from "react";
 
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App";
 import AppLayout from "./Components/AppLayout";
+import Home from "./Components/Home";
 import SearchResultVideos from "./Components/SearchResultVideos";
 import SingleVideo from "./Components/SingleVideo";
 
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <App />,
+                element: <Home />,
             },
             {
                 path: "watch",

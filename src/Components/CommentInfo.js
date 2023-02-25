@@ -1,7 +1,7 @@
 import React from "react";
 import { BiDislike, BiLike } from "react-icons/bi";
 
-function CommentInfo({snippet}) {
+function CommentInfo({ snippet }) {
     return (
         <div className="flex space-x-2 ">
             <img

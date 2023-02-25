@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { API_POLLING_TIME } from "../config";
 import generateMessage from "../lib/randomMessageGenerator";
 import generateName from "../lib/randomNameGenerator";
 import { addChat } from "../store/slices/chatSlice";
@@ -17,7 +18,7 @@ const LiveChat = () => {
                     message: generateMessage(),
                 })
             );
-        }, 2000);
+        }, API_POLLING_TIME);
         return () => clearInterval(chatInterval);
     }, [dispatch]);
     return (

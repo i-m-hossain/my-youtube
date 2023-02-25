@@ -25,3 +25,4 @@ export const YOUTUBE_SEARCH_SUGGESTION_API = (searchTerm) =>
     searchTerm;
 export const OFFSET_LIVE_CHAT=25
 export const OFFSET_SEARCH_RESULT=50
+export const API_POLLING_TIME = 1500 //in mili second

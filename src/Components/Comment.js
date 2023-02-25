@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
+
 import CommentInfo from "./CommentInfo";
 import ReplyContainer from "./ReplyContainer";
 function Comment({ comment }) {
@@ -9,7 +10,7 @@ function Comment({ comment }) {
 
     return (
         <div className="w-full  ">
-            <CommentInfo snippet={snippet}/>
+            <CommentInfo snippet={snippet} />
             <div className="ml-12">
                 {comment?.snippet?.totalReplyCount > 0 ? (
                     <div>
