@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { YOUTUBE_SEARCH_SUGGESTION_API } from "../config";
 import { cacheResults } from "../store/slices/searchSlice";
 import SearchSuggestionItem from "./SearchSuggestionItem";
@@ -11,6 +12,7 @@ function SearchVideos() {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cachedResult = useSelector((state) => state.search.searchResult);
 
     useEffect(() => {
@@ -24,8 +26,10 @@ function SearchVideos() {
         if (query) {
             debounceFunction = setTimeout(() => {
                 if (cachedResult[query]) {
+                    //getting the cache result
                     setResult(cachedResult[query]);
                 } else {
+                    // calling api for search result
                     getSearchSuggestions(query);
                 }
             }, 200);
@@ -51,19 +55,35 @@ function SearchVideos() {
 
     return (
         <>
-            <input
-                type="text"
-                onFocus={() => setShowSuggestions(true)}
-                className="border w-1/2 rounded-l-full p-2 pl-4  border-gray-400 outline-none "
-                onChange={(e) => setQuery(e.target.value)}
-                onBlur={() => {
-                    setShowSuggestions(false);
+            {/* Search input and button */}
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    if (query) {
+                        navigate(
+                            "/results?search_query=" +
+                                query.split(" ").join("+")
+                        );
+                    }
                 }}
-            />
+                className="w-full flex justify-center"
+            >
+                <input
+                    type="text"
+                    onFocus={() => setShowSuggestions(true)}
+                    className="border w-1/2 rounded-l-full p-2  pl-4 border-gray-400 outline-none "
+                    onChange={(e) => setQuery(e.target.value)}
+                    onBlur={() => {
+                        setShowSuggestions(false);
+                    }}
+                />
 
-            <div className="border rounded-r-full border-gray-400 px-4 pt-3 bg-gray-100 hover:bg-gray-200 ">
-                <BsSearch />
-            </div>
+                <div className="border rounded-r-full border-gray-400 px-4 pt-2 bg-gray-100 hover:bg-gray-200 ">
+                    <button type="submit">
+                        <BsSearch />
+                    </button>
+                </div>
+            </form>
 
             {/* loading shimmer */}
             {loading && (

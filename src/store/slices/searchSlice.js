@@ -9,7 +9,8 @@ export const searchSlice = createSlice({
     reducers: {
         cacheResults: (state, { payload }) => {
             state.searchResult = { ...state.searchResult, ...payload };
-            // deleting search result more than OFFSET_SEARCH_RESULT(cache limit)
+            
+            // deleting search result more than OFFSET_SEARCH_RESULT(cache limit
             if (Object.keys(state.searchResult).length > OFFSET_SEARCH_RESULT) {
                 delete state.searchResult[Object.keys(state.searchResult)[0]];
             }
