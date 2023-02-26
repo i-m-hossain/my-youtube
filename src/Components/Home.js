@@ -1,16 +1,20 @@
-import React from 'react';
-import { YOUTUBE_CATEGORIES, YOUTUBE_VIDEO_LIST_API } from '../config';
-import useFetchData from '../customHook/fetchYoutubeVideos';
-import LiveVideoCard from '../HOC/LiveVideoCard';
-import Body from './Body';
-import ButtonList from './ButtonList';
-import Shimmer from './Shimmer';
-import VideoCard from './VideoCard';
-import VideoContainer from './VideoContainer';
+import React from "react";
+import { useSelector } from "react-redux";
+import { YOUTUBE_CATEGORIES, YOUTUBE_VIDEO_LIST_API } from "../config";
+import useFetchData from "../customHook/fetchYoutubeVideos";
+import LiveVideoCard from "../HOC/LiveVideoCard";
+import Body from "./Body";
+import ButtonList from "./ButtonList";
+import Shimmer from "./Shimmer";
+import VideoCard from "./VideoCard";
+import VideoContainer from "./VideoContainer";
 
 const Home = () => {
     const [loading, error, data] = useFetchData(YOUTUBE_VIDEO_LIST_API);
     const [catLoading, catError, catData] = useFetchData(YOUTUBE_CATEGORIES);
+    const buttonVideoList = useSelector(
+        (store) => store.buttonListVideos.buttonListVideos
+    );
 
     if (loading) {
         return (
@@ -26,6 +30,7 @@ const Home = () => {
     if (error) {
         return <p>{error.message}</p>;
     }
+    console.log(buttonVideoList);
     return (
         <>
             <Body>
@@ -35,11 +40,33 @@ const Home = () => {
                     data={catData}
                 />
                 <VideoContainer>
-                    <LiveVideoCard video={data.items[0]} />
+                    <LiveVideoCard
+                        video={
+                            buttonVideoList?.items
+                                ? buttonVideoList?.items[0]
+                                : data.items[0]
+                        }
+                    />
 
-                    {data?.items.slice(1).map((video, i) => (
-                        <VideoCard key={i} video={video} />
-                    ))}
+                    {buttonVideoList?.items
+                        ? buttonVideoList?.items
+                              .slice(1)
+                              .map((video, i) => (
+                                  <VideoCard
+                                      key={i}
+                                      video={video}
+                                      id={video.id.videoId}
+                                  />
+                              ))
+                        : data?.items
+                              .slice(1)
+                              .map((video, i) => (
+                                  <VideoCard
+                                      key={i}
+                                      video={video}
+                                      id={video.id}
+                                  />
+                              ))}
                 </VideoContainer>
             </Body>
         </>
@@ -47,4 +74,3 @@ const Home = () => {
 };
 
 export default Home;
-

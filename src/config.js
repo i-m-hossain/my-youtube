@@ -18,11 +18,12 @@ export const YOUTUBE_CATEGORIES =
     "https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=bd&key=" +
     process.env.REACT_APP_YOUTUBE_API_KEY;
 export const YOUTUBE_SEARCH_API = (searchQuery) =>
-    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchQuery}&key=` +
+    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&q=${searchQuery}&type=video&key=` +
     process.env.REACT_APP_YOUTUBE_API_KEY;
 export const YOUTUBE_SEARCH_SUGGESTION_API = (searchTerm) =>
     "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
     searchTerm;
 export const OFFSET_LIVE_CHAT=25
 export const OFFSET_SEARCH_RESULT=50
-export const API_POLLING_TIME = 1500 //in mili second
+export const API_POLLING_TIME = 1500 //in milli second
+

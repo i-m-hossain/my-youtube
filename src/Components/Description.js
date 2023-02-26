@@ -14,12 +14,15 @@ function Description({ snippet, statistics, children }) {
             </div>
             <h2 className="font-med">{snippet.channelTitle}</h2>
             <div className="flex space-x-2">
-                <span>
-                    {statistics?.viewCount > 1000000
-                        ? Math.floor(statistics.viewCount / 1000000) + "M"
-                        : Math.floor(statistics.viewCount / 1000) + "K"}{" "}
-                    views |
-                </span>
+                {statistics && (
+                    <span>
+                        {statistics?.viewCount > 1000000
+                            ? Math.floor(statistics.viewCount / 1000000) + "M"
+                            : Math.floor(statistics.viewCount / 1000) +
+                              "K"}{" "}
+                        views |
+                    </span>
+                )}
                 <span className="list-decimal">
                     published at {new Date(snippet.publishedAt).toDateString()}
                 </span>
