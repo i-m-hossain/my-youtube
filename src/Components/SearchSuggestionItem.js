@@ -2,10 +2,11 @@ import React from "react";
 import { BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
-function SearchSuggestionItem({ item }) {
+function SearchSuggestionItem({ item, setQuery }) {
     const navigate = useNavigate();
     const handleNavigation = (e, item) => {
         navigate("/results?search_query=" + item.split(" ").join("+"));
+        setQuery(item)
     };
     return (
         <div

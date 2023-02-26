@@ -76,6 +76,7 @@ function SearchVideos() {
                     onBlur={() => {
                         setShowSuggestions(false);
                     }}
+                    value={query}
                 />
 
                 <div className="border rounded-r-full border-gray-400 px-4 pt-2 bg-gray-100 hover:bg-gray-200 ">
@@ -98,7 +99,11 @@ function SearchVideos() {
                 <div className="absolute top-11 mr-11 z-10 border rounded  w-1/2 bg-white shadow-lg">
                     {result &&
                         result.map((item) => (
-                            <SearchSuggestionItem key={item} item={item} />
+                            <SearchSuggestionItem
+                                key={item}
+                                item={item}
+                                setQuery={setQuery}
+                            />
                         ))}
                 </div>
             )}
